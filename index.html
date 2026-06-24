@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>NIRVANOVA India — Futuristic Tourism</title>
+<meta http-equiv="Content-Security-Policy" content="img-src 'self' data: https://upload.wikimedia.org https://randomuser.me; frame-src 'self' https://googleusercontent.com https://www.google.com; connect-src 'self' https://randomuser.me;">
+<style>
+/* --- General Styles & Variables --- */
+:root {
+  --bg: #050710;
+  --card: #0a0f1f;
+  --accent: #00f5ff;
+  --accent2: #a855f7;
+  --muted: #94a3b8;
+  --danger: #ef4444;
+  --success: #10b981;
+  --glass: rgba(255, 255, 255, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, var(--bg) 0%, var(--card) 100%);
+  color: #e5f7ff;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* --- Header & Navigation --- */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: rgba(10, 15, 31, 0.9);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  border-bottom: 1px solid var(--glass);
+}
+
+.brand {
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 16px;
+}
+
+nav a {
+  color: var(--muted);
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--accent);
+  background: var(--glass);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.menu-toggle {
+  display: none;
+  color: var(--accent);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* --- Sections & Layouts --- */
+section {
+  display: none; /* Hide all sections by default */
+  max-width: 1180px;
+  margin: 100px auto 40px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.1);
+  animation: fadeIn 0.6s ease;
+}
+
+section.active {
+  display: block; /* Show the active section */
+}
+
+section.hero {
+  display: block; /* Hero section is always visible */
+  margin-top: 80px;
+  border-radius: 14px;
+  background-image: linear-gradient(180deg, rgba(3, 7, 22, 0.6), rgba(6, 12, 29, 0.5)), url('https://upload.wikimedia.org/wikipedia/commons/6/6d/India_Travel.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(2, 6, 23, 0.6);
+  transition: background-image 1s ease-in-out;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: 34px;
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent);
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: #d6e9f9;
+  margin-bottom: 18px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 14px;
+  border-radius: 14px;
+  box-shadow: 0 0 12px rgba(0, 245, 255, 0.15);
+  transition: 0.3s;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 16px rgba(0, 245, 255, 0.3);
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  margin: auto;
+  display: block;
+  object-fit: cover;
+  box-shadow: 0 0 14px var(--accent);
+}
+
+.guide-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent);
+  margin-bottom: 10px;
+}
+
+.small {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* --- Buttons --- */
+.btn {
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  color: #fff;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  box-shadow: 0 0 14px var(--accent);
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+/* --- Modal --- */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:200;
+}
+.modal{
+  width:92%;
+  max-width:700px;
+  background:#0d1325;
+  padding:20px;
+  border-radius:14px;
+  border:1px solid var(--glass);
+}
+.modal h3{color:var(--accent);margin-bottom:12px;}
+label{display:block;font-size:13px;color:var(--muted);margin-top:10px}
+input,select,textarea{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  background:#11182d;
+  border:1px solid var(--glass);
+  color:#e5f7ff;
+  margin-top:6px;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 900px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 15, 31, 0.9);
+    border-top: 1px solid var(--glass);
+    padding: 10px 0;
+  }
+  nav ul.active {
+    display: flex;
+  }
+  .menu-toggle {
+    display: block;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div style="font-weight: 900; color: var(--accent);">NIRVANOVA</div>
+    <div style="font-size: 12px; color: var(--muted);">India • Travel • Safety</div>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#hero" class="active" onclick="openTab('hero', this)">Home</a></li>
+      <li><a href="#profile" onclick="openTab('profile', this)">Profile</a></li>
+      <li><a href="#explore" onclick="openTab('explore', this)">Explore</a></li>
+      <li><a href="#hotels" onclick="openTab('hotels', this)">Hotels</a></li>
+      <li><a href="#vehicles" onclick="openTab('vehicles', this)">Vehicles</a></li>
+      <li><a href="#community" onclick="openTab('community', this)">Community</a></li>
+      <li><a href="#upload" onclick="openTab('upload', this)">Upload</a></li>
+      <li><a href="#guides" onclick="openTab('guides', this)">Guides</a></li>
+      <li><a href="#emergency" onclick="openTab('emergency', this)">Emergency</a></li>
+    </ul>
+  </nav>
+  <div class="menu-toggle">☰</div>
+</header>
+
+<main>
+  <section class="hero active" id="hero">
+    <div class="hero-content">
+      <h1>Travel smart. Travel safe. Travel India — better.</h1>
+      <p>Discover curated hotels, vehicles, verified guides, live help and a community that rewards you for sharing real travel experiences.</p>
+      <div style="display: flex; justify-content: center; gap: 12px;">
+        <button class="btn" onclick="openTab('explore', document.querySelector('a[href=\'#explore\']'))">Explore Now</button>
+        <button class="btn ghost" onclick="openTab('hotels', document.querySelector('a[href=\'#hotels\']'))">Book Hotels</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="profile">
+    <h2>Your Profile & Bookings</h2>
+    <div class="grid">
+      <div class="card" style="text-align: center;">
+        <img id="avatar" class="avatar" src="https://via.placeholder.com/110" alt="Profile picture">
+        <h3 id="displayName">Guest</h3>
+        <p class="small" id="emailMock">noreply@nrvn.io</p>
+        <div style="margin-top: 8px;">Credits: <span id="creditCount">0</span></div>
+        <input id="nameInput" placeholder="Enter display name" style="margin-top: 10px; width: 90%;">
+        <input id="picInput" type="file" accept="image/*" style="margin-top: 8px; width: 90%;">
+        <div style="margin-top: 8px; display: flex; gap: 8px; justify-content: center;">
+          <button class="btn" onclick="saveProfile()">Save</button>
+          <button class="btn ghost" onclick="loadProfile()">Load</button>
+        </div>
+      </div>
+      <div class="card" style="grid-column: span 2; padding: 14px;">
+        <h3>Your Bookings</h3>
+        <div class="bookings-list" id="bookingsList"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="explore">
+    <h2>Explore Places (India)</h2>
+    <input id="searchInput" placeholder="Search cities, monuments (e.g., Jaipur, Kerala, Leh)" style="width: 100%; margin-bottom: 12px; padding: 10px; border-radius: 8px; background: #081426; border: 1px solid rgba(255, 255, 255, 0.03); color: #dbeeff;">
+    <div class="grid" id="placesGrid"></div>
+  </section>
+
+  <section id="hotels">
+    <h2>Hotels — Book Trusted Stays</h2>
+    <div class="grid" id="hotelsGrid"></div>
+  </section>
+
+  <section id="vehicles">
+    <h2>Vehicles — Cars & Bikes for Rent</h2>
+    <div class="grid" id="vehiclesGrid"></div>
+  </section>
+
+  <section id="community">
+    <h2>Community — Share Stories & Media</h2>
+    <div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: center;">
+        <input id="communitySearchInput" placeholder="Search stories, images, videos..." style="flex: 1; padding: 10px; border-radius: 8px; background: #081426; border: 1px solid rgba(255, 255, 255, 0.03); color: #dbeeff;">
+        <select id="communityFilter" style="padding: 10px; border-radius: 8px; background: #081426; border: 1px solid rgba(255, 255, 255, 0.03); color: #dbeeff;">
+            <option value="all">All</option>
+            <option value="image">Images</option>
+            <option value="video">Videos</option>
+            <option value="post">Posts</option>
+        </select>
+    </div>
+    <textarea id="postText" placeholder="Share a short travel tip or story..." style="width: 100%; min-height: 70px; padding: 10px; border-radius: 8px; background: #081426; border: 1px solid rgba(255, 255, 255, 0.03); color: #dbeeff;"></textarea>
+    <div style="margin-top: 8px; display: flex; gap: 8px; align-items: center;">
+        <button class="btn" onclick="createPost()">Post Text</button>
+        <label for="communityMediaInput" class="btn ghost">Upload Media</label>
+        <input type="file" id="communityMediaInput" accept="image/*,video/*" style="display: none;" onchange="uploadCommunityMedia()">
+    </div>
+    <div id="feed" style="margin-top: 12px;"></div>
+  </section>
+
+  <section id="upload">
+    <h2>My Uploads — Earn Credits</h2>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+        <label for="mediaInput" class="btn">Choose a file to upload</label>
+        <input id="mediaInput" type="file" accept="image/*,video/*" style="display: none;" />
+        <button class="btn ghost" onclick="uploadMedia()">Upload & Earn 10 credits</button>
+        <button class="btn" onclick="showUploads()">My Uploads</button>
+    </div>
+    <div id="previewArea" style="margin-top: 12px;"></div>
+</section>
+  
+  <section id="guides">
+    <h2>Verified Guides</h2>
+    <div class="grid">
+      <div class="card" style="text-align: center;">
+        <img class="guide-img" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ravi Kumar">
+        <h3>Ravi Kumar — Delhi</h3>
+        <div class="muted">Rating ★★★★☆ • Languages: Hindi, English</div>
+        <div style="margin-top: 8px;">
+          <button class="btn">Book Guide (mock)</button>
+        </div>
+      </div>
+      <div class="card" style="text-align: center;">
+        <img class="guide-img" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Anita Sharma">
+        <h3>Anita Sharma — Jaipur</h3>
+        <div class="muted">Rating ★★★★★ • Languages: Hindi, English</div>
+        <div style="margin-top: 8px;">
+          <button class="btn">Book Guide (mock)</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="emergency">
+    <h2>Emergency & Map</h2>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
+      <a class="btn" href="tel:100">Police (100)</a>
+      <a class="btn" href="tel:102">Ambulance (102)</a>
+      <a class="btn" href="tel:1091">Tourist Helpline (1091)</a>
+    </div>
+    <iframe 
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.1160993809!2d72.7410990666361!3d19.08219783942852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63d1aa4b1a1%3A0xdeb4f9d62c5c2!2sIndia!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+  style="width: 100%; height: 300px; border: 0; border-radius: 10px;" 
+  allowfullscreen="" 
+  loading="lazy">
+</iframe>
+
+  </section>
+
+  <section id="about">
+    <h2>About NIRVANOVA India</h2>
+    <p class="muted">Built as a production-ready single-file prototype. Supports profiles, bookings (hotel & vehicle), credits, community, uploads, maps & emergency — all tailored for India and hackathon-ready. Integrate backend & payment gateway to go live.</p>
+  </section>
+</main>
+
+<div class="overlay" id="overlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h3 id="modalType">Book</h3>
+    <div id="modalContent"></div>
+    <div class="actions">
+      <button class="btn ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn" id="confirmBookingBtn" onclick="confirmBooking()">Confirm & Pay</button>
+    </div>
+  </div>
+</div>
+
+<button id="chat-toggle" title="AI Assistant">💬</button>
+<div id="mini-chat">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+    <strong style="color: var(--accent);">AI Travel Assistant</strong>
+    <small class="muted">mock - ready for API</small>
+  </div>
+  <div class="messages" id="chatMessages"></div>
+  <div style="display: flex; gap: 8px; margin-top: 8px;">
+    <input id="chatInput" placeholder="Ask e.g., 'Best time to visit Leh?'" style="flex: 1; padding: 8px; border-radius: 8px; background: #081426; border: 1px solid rgba(255, 255, 255, 0.03); color: #dbeeff;">
+    <button class="btn" onclick="sendChat()">Ask</button>
+  </div>
+</div>
+
+<script>
+/* ======= App Data ======= */
+/* ======= Community Data ======= */
+let communityFeed = [];
+
+function saveLocalCommunity(){ localStorage.setItem('nrvn_community_feed', JSON.stringify(communityFeed)); }
+function loadLocalCommunity(){
+  const raw = localStorage.getItem('nrvn_community_feed');
+  if(raw) communityFeed = JSON.parse(raw);
+  renderFeed();
+}
+let hotels = [
+  {
+    id:'h1',
+    title:'Heritage Taj View, Agra',
+    city:'Agra',
+    pricePerNight:4200,
+    rating:4.6,
+    img:'https://images.unsplash.com/photo-1597004053581-8d3fbc0eec84?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id:'h2',
+    title:'Royal Pink Palace, Jaipur',
+    city:'Jaipur',
+    pricePerNight:3500,
+    rating:4.7,
+    img:'https://images.unsplash.com/photo-1603262110263-fb2c0e6e2d02?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id:'h3',
+    title:'Kerala Backwater Resort',
+    city:'Kerala',
+    pricePerNight:3200,
+    rating:4.5,
+    img:'https://images.unsplash.com/photo-1593698054529-94b9e4e36fc1?auto=format&fit=crop&w=800&q=80'
+  }
+];
+
+
+let vehicles = [
+  {
+    id:'v1',
+    title:'Swift Dzire (AC, 4-seater)',
+    pricePerDay:1800,
+    type:'Car',
+    img:'https://images.unsplash.com/photo-1624623228066-6c7bdafc7ffb?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id:'v2',
+    title:'Royal Enfield (350cc)',
+    pricePerDay:900,
+    type:'Bike',
+    img:'https://images.unsplash.com/photo-1622322996357-29ca123f8a83?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id:'v3',
+    title:'Innova Crysta (AC, 7-seater)',
+    pricePerDay:3500,
+    type:'Car',
+    img:'https://images.unsplash.com/photo-1616787667992-df36c9d8461f?auto=format&fit=crop&w=800&q=80'
+  }
+];
+
+
+let profile = {
+  name: 'Guest',
+  avatar: '',
+  email: 'noreply@nrvn.io',
+  credits: 50,
+  places: [],
+  posts: [],
+  uploads: [],
+  bookings: []
+};
+
+const userAvatars = [
+  'https://randomuser.me/api/portraits/men/1.jpg',
+  'https://randomuser.me/api/portraits/women/2.jpg',
+  'https://randomuser.me/api/portraits/men/3.jpg',
+  'https://randomuser.me/api/portraits/women/4.jpg',
+  'https://randomuser.me/api/portraits/men/5.jpg'
+];
+
+function getRandomAvatar() {
+  return userAvatars[Math.floor(Math.random() * userAvatars.length)];
+}
+
+/* ======= Utils ======= */
+function saveLocal(){ localStorage.setItem('nrvn_profile', JSON.stringify(profile)); }
+function loadLocal(){
+  const raw = localStorage.getItem('nrvn_profile');
+  if(raw) profile = JSON.parse(raw);
+  renderProfile();
+  renderPlaces();
+  renderHotels();
+  renderVehicles();
+  renderFeed();
+}
+function uid(prefix='id'){ return prefix + Date.now().toString(36).slice(6) + Math.floor(Math.random()*999).toString(36); }
+
+/* ======= Tab Switching ======= */
+function openTab(tabId, element) {
+  const sections = document.querySelectorAll('section');
+  sections.forEach(sec => sec.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+
+  const navLinks = document.querySelectorAll('nav a');
+  navLinks.forEach(link => link.classList.remove('active'));
+  element.classList.add('active');
+
+  // For mobile menu
+  const nav = document.querySelector('nav ul');
+  if (nav.classList.contains('active')) {
+    nav.classList.remove('active');
+  }
+}
+
+/* ======= Profile ======= */
+function saveProfile(){
+  const name = document.getElementById('nameInput').value.trim();
+  const file = document.getElementById('picInput').files[0];
+  if(name) profile.name = name;
+  if(file){
+    const reader = new FileReader();
+    reader.onload = e => {
+      profile.avatar = e.target.result;
+      document.getElementById('avatar').src = profile.avatar;
+      saveLocal();
+    };
+    reader.readAsDataURL(file);
+  }
+  saveLocal();
+  renderProfile();
+  alert('Profile saved locally ✅');
+}
+
+function renderProfile(){
+  document.getElementById('displayName').innerText = profile.name || 'Guest';
+  document.getElementById('creditCount').innerText = profile.credits;
+  document.getElementById('avatar').src = profile.avatar || 'https://via.placeholder.com/110';
+  renderBookings();
+}
+
+/* ======= Explore Places (search) ======= */
+function renderPlaces(filter=''){
+  const grid = document.getElementById('placesGrid');
+  grid.innerHTML = '';
+  // combine sample places from hotels & vehicles cities
+  const placeSet = new Map();
+  hotels.forEach(h=> placeSet.set(h.city, {title:h.city, snippet: h.title, img:h.img}));
+  // add hard-coded places
+  const extras = [
+  {
+    title:'Varanasi',
+    snippet:'Ancient ghats & spirituality',
+    img:'https://images.unsplash.com/photo-1617196037181-b5cb364a7e87?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    title:'Goa',
+    snippet:'Beaches & nightlife',
+    img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    title:'Manali',
+    snippet:'Himalayan adventure',
+    img:'https://images.unsplash.com/photo-1615474851935-7e63aaacbb2b?auto=format&fit=crop&w=800&q=80'
+  }
+];
+
+  extras.forEach(e=> placeSet.set(e.title, e));
+  const places = Array.from(placeSet.values()).filter(p => p.title.toLowerCase().includes(filter.toLowerCase()) || p.snippet.toLowerCase().includes(filter.toLowerCase()));
+  places.forEach(p=>{
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = `
+      <img class="hotel-img" src="${p.img}" alt="${p.title}">
+      <h3>${p.title}</h3>
+      <div class="muted">${p.snippet}</div>
+      <div style="margin-top:8px;display:flex;gap:8px;justify-content:space-between;align-items:center">
+        <button class="btn" onclick="savePlace('${p.title}')">Save</button>
+        <button class="btn ghost" onclick="openSearchMap('${p.title}')">View Map</button>
+      </div>
+    `;
+    grid.appendChild(div);
+  });
+}
+document.getElementById('searchInput').addEventListener('input', e => renderPlaces(e.target.value));
+
+function savePlace(name){
+  if(!profile.places.includes(name)) profile.places.push(name);
+  saveLocal();
+  alert(name + ' saved to your profile!');
+}
+
+/* ======= HOTELS ======= */
+function renderHotels(){
+  const grid = document.getElementById('hotelsGrid'); grid.innerHTML = '';
+  hotels.forEach(h=>{
+    const div = document.createElement('div'); div.className='card';
+    div.innerHTML = `
+      <img class="hotel-img" src="${h.img}" alt="${h.title}">
+      <h3>${h.title}</h3>
+      <div class="muted">${h.city} • Rating: ${h.rating}</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <div class="price">₹${h.pricePerNight}/night</div>
+        <div>
+          <button class="btn" onclick="openBooking('hotel','${h.id}')">Book</button>
+          <button class="btn ghost" onclick="savePlace('${h.title}')">Save</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+/* ======= VEHICLES ======= */
+function renderVehicles(){
+  const grid = document.getElementById('vehiclesGrid'); grid.innerHTML = '';
+  vehicles.forEach(v=>{
+    const div = document.createElement('div'); div.className='card';
+    div.innerHTML = `
+      <img class="vehicle-img" src="${v.img}" alt="${v.title}">
+      <h3>${v.title}</h3>
+      <div class="muted">${v.type} • ₹${v.pricePerDay}/day</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <div class="price">₹${v.pricePerDay}/day</div>
+        <div>
+          <button class="btn" onclick="openBooking('vehicle','${v.id}')">Book</button>
+          <button class="btn ghost" onclick="savePlace('${v.title}')">Save</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+/* ======= BOOKING MODAL LOGIC ======= */
+let activeBooking = null;
+function openBooking(type,id){
+  const overlay = document.getElementById('overlay'); overlay.style.display='flex';
+  const modalType = document.getElementById('modalType');
+  const content = document.getElementById('modalContent');
+  document.getElementById('confirmBookingBtn').style.display = 'inline-block';
+
+  activeBooking = {type,id};
+  if(type==='hotel'){
+    const h = hotels.find(x=>x.id===id);
+    modalType.innerText = `Book Hotel — ${h.title}`;
+    content.innerHTML = `
+      <div class="muted">Price: ₹${h.pricePerNight}/night • Rating: ${h.rating}</div>
+      <label>Check-in</label><input id="bk_checkin" type="date">
+      <label>Check-out</label><input id="bk_checkout" type="date">
+      <label>Guests</label><input id="bk_guests" type="number" min="1" value="2">
+      <label><input type="checkbox" id="payWithCredits"> Pay with credits (1 credit = ₹10)</label>
+      <div style="margin-top:10px" class="muted">Note: Credits applied will be deducted immediately when you confirm.</div>
+    `;
+  } else {
+    const v = vehicles.find(x=>x.id===id);
+    modalType.innerText = `Book Vehicle — ${v.title}`;
+    content.innerHTML = `
+      <div class="muted">Price: ₹${v.pricePerDay}/day • ${v.type}</div>
+      <label>Pickup date</label><input id="bk_pickup" type="date">
+      <label>Return date</label><input id="bk_return" type="date">
+      <label>Pickup location</label><input id="bk_location" placeholder="City or landmark">
+      <label><input type="checkbox" id="payWithCredits"> Pay with credits (1 credit = ₹10)</label>
+    `;
+  }
+}
+
+function closeModal(){ document.getElementById('overlay').style.display='none'; activeBooking = null; }
+
+/* calculate days difference (min 1) */
+function daysBetween(a,b){
+  const d1 = new Date(a); const d2 = new Date(b);
+  const diff = Math.ceil((d2.getTime() - d1.getTime()) / (1000*60*60*24));
+  return diff > 0 ? diff : 1;
+}
+
+/* Confirm & Save Booking */
+function confirmBooking(){
+  if(!activeBooking) return;
+  const payWithCredits = document.getElementById('payWithCredits')?.checked;
+  if(activeBooking.type==='hotel'){
+    const h = hotels.find(x=>x.id===activeBooking.id);
+    const ci = document.getElementById('bk_checkin').value;
+    const co = document.getElementById('bk_checkout').value;
+    const guests = Number(document.getElementById('bk_guests').value || 1);
+    if(!ci || !co) return alert('Select check-in and check-out dates.');
+    const nights = daysBetween(ci,co);
+    const cost = nights * h.pricePerNight;
+    processPaymentAndSave({type:'hotel', title:h.title, city:h.city, nights, checkin:ci, checkout:co, guests, cost, paidWithCredits: false}, payWithCredits);
+  } else {
+    const v = vehicles.find(x=>x.id===activeBooking.id);
+    const pu = document.getElementById('bk_pickup').value;
+    const ret = document.getElementById('bk_return').value;
+    const loc = document.getElementById('bk_location').value || 'Not specified';
+    if(!pu || !ret) return alert('Select pickup and return dates.');
+    const days = daysBetween(pu,ret);
+    const cost = days * v.pricePerDay;
+    processPaymentAndSave({type:'vehicle', title:v.title, city:loc, days, pickup:pu, return:ret, cost, paidWithCredits:false}, payWithCredits);
+  }
+}
+
+/* Payment processing (mock): 1 credit = ₹10 */
+function processPaymentAndSave(booking, payWithCredits){
+  const requiredCredits = Math.ceil(booking.cost / 10);
+  if(payWithCredits){
+    if(profile.credits >= requiredCredits){
+      profile.credits -= requiredCredits;
+      booking.paidWithCredits = true;
+      booking.paid = true;
+      booking.creditsUsed = requiredCredits;
+    } else {
+      return alert(`Insufficient credits. Required: ${requiredCredits} credits but you have ${profile.credits}.`);
+    }
+  } else {
+    booking.paid = true;
+    booking.paidWithCredits = false;
+  }
+  booking.id = uid('bk_');
+  booking.createdAt = new Date().toISOString();
+  profile.bookings.push(booking);
+  saveLocal();
+  closeModal();
+  alert(`Booking confirmed! ₹${booking.cost} — ${booking.paidWithCredits ? `paid using ${booking.creditsUsed} credits` : 'paid (mock)'}`);
+  renderBookings();
+  renderProfile();
+}
+
+/* Render bookings in profile */
+function renderBookings(){
+  const container = document.getElementById('bookingsList');
+  container.innerHTML = '';
+  if(profile.bookings.length===0){ container.innerHTML = '<div class="muted">No bookings yet. Book a hotel or vehicle to see it here.</div>'; return; }
+  profile.bookings.slice().reverse().forEach(b=>{
+    const div = document.createElement('div'); div.className='card'; div.style.marginBottom='8px';
+    div.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div style="font-weight:800">${b.title} ${b.type==='hotel' ? ' (Hotel)' : ' (Vehicle)'}</div>
+          <div class="muted" style="font-size:12px">${new Date(b.createdAt).toLocaleString()}</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-weight:800">₹${b.cost}</div>
+          <div class="muted">${b.paid ? (b.paidWithCredits ? 'Paid with credits' : 'Paid') : 'Pending'}</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+        <button class="btn ghost" onclick="viewBooking('${b.id}')">View</button>
+        <button class="btn" onclick="cancelBooking('${b.id}')">Cancel</button>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+/* View booking details */
+function viewBooking(id){
+  const b = profile.bookings.find(x=>x.id===id);
+  if(!b) return alert('Booking not found');
+  const overlay = document.getElementById('overlay'); overlay.style.display='flex';
+  document.getElementById('modalType').innerText = 'Booking Details';
+  document.getElementById('modalContent').innerHTML = `
+    <div class="muted">Type: ${b.type}</div>
+    <div style="margin-top:6px">Title: <strong>${b.title}</strong></div>
+    <div style="margin-top:6px">Cost: <strong>₹${b.cost}</strong></div>
+    <div style="margin-top:6px">${b.type==='hotel' ? `Check-in: ${b.checkin} • Check-out: ${b.checkout} • Nights: ${b.nights}` : `Pickup: ${b.pickup} • Return: ${b.return} • Days: ${b.days}`}</div>
+    <div style="margin-top:8px" class="muted">Paid: ${b.paid ? (b.paidWithCredits ? `${b.creditsUsed} credits` : 'Card (mock)') : 'No'}</div>
+  `;
+  document.getElementById('confirmBookingBtn').style.display='none';
+}
+
+/* Cancel booking and refund credits if paidWithCredits */
+function cancelBooking(id){
+  if(!confirm('Cancel booking? You may get credits refunded (if paid with credits).')) return;
+  const idx = profile.bookings.findIndex(x=>x.id===id);
+  if(idx===-1) return alert('Booking not found');
+  const b = profile.bookings[idx];
+  if(b.paidWithCredits && b.creditsUsed){
+    profile.credits += b.creditsUsed;
+  }
+  profile.bookings.splice(idx,1);
+  saveLocal();
+  renderBookings();
+  renderProfile();
+  alert('Booking canceled. Refund processed if eligible.');
+}
+
+/* ======= COMMUNITY ======= */
+/* ======= COMMUNITY ======= */
+
+
+function createPost(mediaUrl = '', mediaType = ''){
+    const text = document.getElementById('postText').value.trim();
+    if(!text && !mediaUrl) return alert('Write something or upload media first');
+
+    const p = {
+        id: uid('feed'),
+        text,
+        likes: 0,
+        created: new Date().toISOString(),
+        author: profile.name,
+        avatar: profile.avatar || getRandomAvatar(),
+        mediaUrl: mediaUrl,
+        mediaType: mediaType,
+    };
+    communityFeed.push(p);
+    saveLocalCommunity();
+    document.getElementById('postText').value = '';
+    renderFeed();
+}
+
+function uploadCommunityMedia(){
+    const f = document.getElementById('communityMediaInput').files[0];
+    if(!f) return;
+    const url = URL.createObjectURL(f);
+    const type = f.type.startsWith('image') ? 'image' : 'video';
+    createPost(url, type);
+    alert(`Media uploaded to community feed!`);
+    document.getElementById('communityMediaInput').value = ''; // Reset input
+}
+
+function renderFeed(filter = 'all', searchTerm = ''){
+    const feed = document.getElementById('feed');
+    feed.innerHTML = '';
+    const filteredPosts = communityFeed.filter(p => {
+        const matchesFilter = filter === 'all' || p.mediaType === filter || (filter === 'post' && !p.mediaType);
+        const matchesSearch = !searchTerm || (p.text && p.text.toLowerCase().includes(searchTerm.toLowerCase()));
+        return matchesFilter && matchesSearch;
+    });
+
+    if(filteredPosts.length === 0) {
+        feed.innerHTML = '<div class="muted">No posts found matching your search.</div>';
+        return;
+    }
+
+    filteredPosts.slice().reverse().forEach(p => {
+        const d = document.createElement('div');
+        d.className = 'card';
+        let mediaHtml = '';
+        if (p.mediaType === 'image') {
+            mediaHtml = `<div style="margin-top: 12px; text-align: center;"><img src="${p.mediaUrl}" style="max-width: 100%; max-height: 400px; border-radius: 8px;"></div>`;
+        } else if (p.mediaType === 'video') {
+            mediaHtml = `<div style="margin-top: 12px; text-align: center;"><video controls src="${p.mediaUrl}" style="max-width: 100%; max-height: 400px; border-radius: 8px;"></video></div>`;
+        }
+
+        d.innerHTML = `
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+                <img src="${p.avatar}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;">
+                <div>
+                    <strong>${p.author}</strong><div class="muted" style="font-size:12px">${new Date(p.created).toLocaleString()}</div>
+                </div>
+            </div>
+            ${p.text ? `<p style="margin-top:8px">${p.text}</p>` : ''}
+            ${mediaHtml}
+            <div style="margin-top:8px;text-align:right">
+                <button class="btn ghost" onclick="likePost('${p.id}')">❤️ ${p.likes}</button>
+            </div>
+        `;
+        feed.appendChild(d);
+    });
+}
+
+function likePost(id){
+    const p = communityFeed.find(x => x.id === id);
+    if(!p) return;
+    p.likes++;
+    saveLocalCommunity();
+    renderFeed(document.getElementById('communityFilter').value, document.getElementById('communitySearchInput').value);
+}
+
+function saveLocalCommunity(){
+    localStorage.setItem('nrvn_community_feed', JSON.stringify(communityFeed));
+}
+
+function loadLocal(){
+  const raw = localStorage.getItem('nrvn_profile');
+  if(raw) profile = JSON.parse(raw);
+  renderProfile();
+  renderPlaces();
+  renderHotels();
+  renderVehicles();
+  renderFeed();
+  loadLocalCommunity(); // यह लाइन जोड़ें
+}
+
+document.getElementById('communitySearchInput').addEventListener('input', (e) => {
+    const filter = document.getElementById('communityFilter').value;
+    renderFeed(filter, e.target.value);
+});
+
+document.getElementById('communityFilter').addEventListener('change', (e) => {
+    const searchTerm = document.getElementById('communitySearchInput').value;
+    renderFeed(e.target.value, searchTerm);
+});
+/* ======= UPLOADS ======= */
+/* ======= UPLOADS ======= */
+function uploadMedia(){
+  const f = document.getElementById('mediaInput').files[0];
+  if(!f) return alert('Choose a file to upload');
+  const url = URL.createObjectURL(f);
+  const type = f.type.startsWith('image') ? 'image' : 'video';
+
+  profile.uploads.push({id:uid('up'), name:f.name, type:type, url, created:new Date().toISOString()});
+  profile.credits += 10;
+  saveLocal();
+  renderProfile();
+  document.getElementById('previewArea').innerHTML = `<div class="card"><div>Uploaded: ${f.name}</div><div style="margin-top:8px">${type === 'video' ? `<video controls src="${url}" style="width:100%"></video>` : `<img src="${url}" style="width:100%;border-radius:8px">`}</div></div>`;
+  alert('Uploaded! +10 credits');
+}
+
+function showUploads(){
+  const p = profile.uploads.slice().reverse();
+  if(p.length===0) return alert('No uploads yet');
+  const html = p.map(u => `<div class="card" style="margin-bottom:8px"><div>${u.name} • ${new Date(u.created).toLocaleString()}</div>${u.type === 'video' ? `<video controls src="${u.url}" style="width:100%;margin-top:8px"></video>` : `<img src="${u.url}" style="width:100%;margin-top:8px;border-radius:8px">`}</div>`).join('');
+  document.getElementById('previewArea').innerHTML = html;
+}
+/* ======= MAP SEARCH for Places ======= */
+function openSearchMap(place){
+  const mapFrame = document.querySelector('#emergency iframe');
+  // API key ki jagah direct public embed link
+  mapFrame.src = `https://www.google.com/maps?q=${encodeURIComponent(place)}&output=embed`;
+  openTab('emergency', document.querySelector('a[href="#emergency"]'));
+}
+
+
+/* ======= CHAT (mock) ======= */
+function toggleMiniChat(){
+  const el = document.getElementById('mini-chat');
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+  if(el.style.display === 'block') document.getElementById('chatMessages').innerHTML = '<div class="muted">Hi! I am a mock AI assistant. Ask about places, best times, or safety tips.</div>';
+}
+
+function sendChat(){
+  const input = document.getElementById('chatInput'); const text = input.value.trim(); if(!text) return;
+  const box = document.getElementById('chatMessages');
+  box.innerHTML += `<div style="margin:6px 0"><strong>You:</strong> ${text}</div>`;
+  // simple contextual replies
+  let reply = 'Great question! India has diverse climates — pick a region for exact advice.';
+  if(/jaipur|rajasthan/i.test(text)) reply = 'Jaipur is best Oct-Mar. Carry light woolens in winter nights.';
+  if(/leh|ladakh|manali/i.test(text)) reply = 'Ladakh is best Jun-Sep. High altitude — acclimatize and stay hydrated.';
+  if(/kerala|goa/i.test(text)) reply = 'Kerala & Goa: Nov-Feb are ideal for beaches and backwaters.';
+  box.innerHTML += `<div style="margin:6px 0"><strong>Assistant:</strong> ${reply}</div>`;
+  input.value = ''; box.scrollTop = box.scrollHeight;
+}
+
+const backgroundImages = [
+    'https://upload.wikimedia.org/wikipedia/commons/6/6d/India_Travel.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/1/1c/Taj_Mahal_in_March_2004.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/2/2b/Hawa_Mahal_Jaipur.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/6/6a/Alleppey_backwaters.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/6/6f/Varanasi_Ghat.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/9/9c/Old_Goa.jpg',
+];
+
+let currentImageIndex = 0;
+
+function changeBackground() {
+    const heroSection = document.getElementById('hero');
+    currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
+    const nextImage = backgroundImages[currentImageIndex];
+    heroSection.style.backgroundImage = `linear-gradient(180deg, rgba(3, 7, 22, 0.6), rgba(6, 12, 29, 0.5)), url('${nextImage}')`;
+}
+
+// Initial background change
+setInterval(changeBackground, 5000);
+
+/* ======= Init & UI Bindings ======= */
+document.querySelector('.menu-toggle').addEventListener('click', ()=> {
+  const nav = document.querySelector('nav ul');
+  nav.classList.toggle('active');
+});
+
+document.getElementById('chat-toggle').addEventListener('click', toggleMiniChat);
+
+// Initial rendering of data
+loadLocal();
+</script>
+</body>
+</html>
